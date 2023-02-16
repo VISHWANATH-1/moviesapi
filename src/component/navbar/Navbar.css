@@ -25,10 +25,10 @@
    
 }
 .navbar >ul >li >a{
-    color: aqua;
+    color: rgb(26, 4, 86);
     box-sizing: border-box;
     z-index: 10;
-    
+    text-decoration: none;
    
 } 
 
