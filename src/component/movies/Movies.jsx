@@ -1,6 +1,14 @@
-import React from 'react'
-import media_1 from "../../images/media_1.png"
+import React, { useEffect } from 'react'
+import "./Movies.css"
+import axios from 'axios'
 const Movies = () => {
+    useEffect(()=>{
+        async function getData(){
+            const res=await axios.get(`https://api.tvmaze.com/search/shows?q=all`)
+            console.log(res.data);
+        }
+        getData();
+    });
   return (
     <div >
         <Card name={"vishwanath"} languge={"haha"} genres={"hhhh"} image={"media_1"} />
@@ -12,17 +20,27 @@ const Movies = () => {
 export default Movies
 
 
-export const  Card =({name,languge,genres,image,})=>{
+export const  Card =({name,languge,genres,image,type})=>{
     return (
-        <div  style={{width:"300px",height:'400px',border:'1px solid grey',borderRadi :"5px"}}>
-            <img  src= {media_1.png}  alt="moviesImage" />
-            <div>
-                <h3>Movies Name: {name}</h3>
-                <h4>Movies Name: {name}</h4>
-            </div>
-
-            
-
+        <div className="cards">
+        <img
+          className="cards__img"
+          src={data.image} alt=""
+        />
+        <div className="cards__overlay">
+          <div className="card__name">
+            {data.name}
+          </div>
+          <div className="card__type">
+            {data.type}
+            <span className="card__language">
+              {data.languge}
+            </span>
+          </div>
+          <div className="card__genres">
+            {data.genres }
+          </div>
         </div>
+      </div>
     )
 }
