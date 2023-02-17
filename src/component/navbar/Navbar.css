@@ -2,7 +2,8 @@
     display: flex;
     justify-content: space-between;
     padding: 5px;
-    color: aqua;
+    margin-bottom: 3rem;
+    background-color: rgb(132, 133, 132);
 }
 .logo{
     width: 100px;
@@ -25,10 +26,14 @@
    
 }
 .navbar >ul >li >a{
-    color: rgb(26, 4, 86);
+    color: rgb(7, 125, 185);
     box-sizing: border-box;
     z-index: 10;
     text-decoration: none;
-   
 } 
-
+.navbar >ul >li >a:hover{
+    color: aquamarine;
+}
+.navbar >ul >li >a:active{
+    color: brown;
+}

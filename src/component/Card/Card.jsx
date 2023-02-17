@@ -1,11 +1,26 @@
-import React from 'react'
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const MoviesDetails = () => {
 
 
+const Card = ({ name, languge, genres, images, type }) => {
+  const [detailsPage, setDetailsPage] = useState(false)
+ const detaislPageData={
+  name:name,
+  language:languge,
+  genres:genres,
+  type:type
+
+ }
+
+const navigate=useNavigate()
+  if (detailsPage) {
+    navigate(`/details,{detaislPageData}`)
+  }
 
 
   return (
+
     <div className="cards" onClick={() => setDetailsPage(true)}>
 
       <img
@@ -32,5 +47,4 @@ const MoviesDetails = () => {
     </div>
   )
 }
-
-export default MoviesDetails
+export default Card;

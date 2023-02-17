@@ -1,46 +1,32 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect, useState,} from 'react'
 import "./Movies.css"
-import axios from 'axios'
+import Card from '../Card/Card';
+import { GlobalContext } from '../../GlobalContext';
+import axios from 'axios';
 const Movies = () => {
-    useEffect(()=>{
-        async function getData(){
-            const res=await axios.get(`https://api.tvmaze.com/search/shows?q=all`)
-            console.log(res.data);
-        }
-        getData();
-    });
+  const [moviesData,setMoviesData]=useState([])
+  useEffect(()=>{
+    axios.get("https://api.tvmaze.com/search/shows?q=all").then((res)=>{setMoviesData(res.data)})
+  },[])
   return (
-    <div >
-        <Card name={"vishwanath"} languge={"haha"} genres={"hhhh"} image={"media_1"} />
+    < >
+      { moviesData?.map((values,index)=>{
+          return (
+          <div className="main-con">
+            <div key={index} className='card-container'>
+            <Card name={values.show.name} type={values.show.type} languge={values.show.language} genres={values.show.genres} images={values.show.image?.medium} />
+              
+            </div>
+            </div>
+          )
+        })
+      }
+       
         
-    </div>
+    </>
   )
 }
 
 export default Movies
 
 
-export const  Card =({name,languge,genres,image,type})=>{
-    return (
-        <div className="cards">
-        <img
-          className="cards__img"
-          src={data.image} alt=""
-        />
-        <div className="cards__overlay">
-          <div className="card__name">
-            {data.name}
-          </div>
-          <div className="card__type">
-            {data.type}
-            <span className="card__language">
-              {data.languge}
-            </span>
-          </div>
-          <div className="card__genres">
-            {data.genres }
-          </div>
-        </div>
-      </div>
-    )
-}
